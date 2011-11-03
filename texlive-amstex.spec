@@ -1,3 +1,9 @@
+# revision 23089
+# category Package
+# catalog-ctan /macros/amstex
+# catalog-date 2011-04-11 22:27:07 +0200
+# catalog-license lppl
+# catalog-version 2.2
 Name:		texlive-amstex
 Version:	2.2
 Release:	1
@@ -59,6 +65,7 @@ amslatex, but AMSTeX remains as a working system.
 %doc %{_texmfdistdir}/doc/amstex/base/joyerr2.tex
 %doc %{_mandir}/man1/amstex.1*
 %doc %{_texmfdir}/doc/man/man1/amstex.man1.pdf
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -68,6 +75,8 @@ amslatex, but AMSTeX remains as a working system.
 
 %install
 mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
+cp -fpar texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_mandir}/man1
 mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
