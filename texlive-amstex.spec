@@ -6,7 +6,7 @@
 # catalog-version 2.2
 Name:		texlive-amstex
 Version:	2.2
-Release:	2
+Release:	3
 Summary:	American Mathematical Society plain TeX macros
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/amstex
@@ -17,6 +17,7 @@ BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
 Requires(post):	texlive-kpathsea
+Requires(post):	texlive-tetex
 Requires:	texlive-tex
 Requires:	texlive-amstex.bin
 
@@ -45,6 +46,7 @@ amslatex, but AMSTeX remains as a working system.
 %{_texmfdistdir}/tex/amstex/base/amstex.bug
 %{_texmfdistdir}/tex/amstex/base/amstex.tex
 %{_texmfdistdir}/tex/amstex/config/amstex.ini
+%_texmf_fmtutil_d/amstex
 %doc %{_texmfdistdir}/doc/amstex/base/README
 %doc %{_texmfdistdir}/doc/amstex/base/amsguide.pdf
 %doc %{_texmfdistdir}/doc/amstex/base/amsguide.tex
@@ -68,3 +70,9 @@ mkdir -p %{buildroot}%{_datadir}
 cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_mandir}/man1
 mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
+mkdir -p %{buildroot}%{_texmf_fmtutil_d}
+cat > %{buildroot}%{_texmf_fmtutil_d}/amstex <<EOF
+#
+# from amstex:
+amstex pdftex - -translate-file=cp227.tcx *amstex.ini
+EOF
