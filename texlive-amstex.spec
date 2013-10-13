@@ -1,12 +1,12 @@
-# revision 23089
+# revision 29764
 # category Package
 # catalog-ctan /macros/amstex
-# catalog-date 2011-04-11 22:27:07 +0200
+# catalog-date 2012-04-13 20:24:15 +0200
 # catalog-license lppl
 # catalog-version 2.2
 Name:		texlive-amstex
 Version:	2.2
-Release:	3
+Release:	4
 Summary:	American Mathematical Society plain TeX macros
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/amstex
@@ -57,7 +57,7 @@ amslatex, but AMSTeX remains as a working system.
 %doc %{_texmfdistdir}/doc/amstex/base/joyerr.tex
 %doc %{_texmfdistdir}/doc/amstex/base/joyerr2.tex
 %doc %{_mandir}/man1/amstex.1*
-%doc %{_texmfdir}/doc/man/man1/amstex.man1.pdf
+%doc %{_texmfdistdir}/doc/man/man1/amstex.man1.pdf
 
 #-----------------------------------------------------------------------
 %prep
@@ -67,32 +67,12 @@ amslatex, but AMSTeX remains as a working system.
 
 %install
 mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf texmf-dist %{buildroot}%{_datadir}
+cp -fpar texmf-dist %{buildroot}%{_datadir}
 mkdir -p %{buildroot}%{_mandir}/man1
-mv %{buildroot}%{_texmfdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
+mv %{buildroot}%{_texmfdistdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
 mkdir -p %{buildroot}%{_texmf_fmtutil_d}
 cat > %{buildroot}%{_texmf_fmtutil_d}/amstex <<EOF
 #
 # from amstex:
 amstex pdftex - -translate-file=cp227.tcx *amstex.ini
 EOF
-
-
-%changelog
-* Tue Feb 21 2012 Paulo Andrade <pcpa@mandriva.com.br> 2.2-3
-+ Revision: 778423
-- Rebuild after tlpobj2spec.pl bug correction.
-
-* Tue Jan 03 2012 Paulo Andrade <pcpa@mandriva.com.br> 2.2-2
-+ Revision: 749246
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 2.2-1
-+ Revision: 720057
-- texlive-amstex
-- texlive-amstex
-- texlive-amstex
-- texlive-amstex
-- texlive-amstex
-- texlive-amstex
-
