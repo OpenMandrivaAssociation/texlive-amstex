@@ -6,7 +6,7 @@
 # catalog-version 2.2
 Name:		texlive-amstex
 Version:	2.2
-Release:	3
+Release:	4
 Summary:	American Mathematical Society plain TeX macros
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/amstex
