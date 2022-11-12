@@ -1,18 +1,12 @@
-# revision 33736
-# category Package
-# catalog-ctan /macros/amstex
-# catalog-date 2012-04-13 20:24:15 +0200
-# catalog-license lppl
-# catalog-version 2.2
 Name:		texlive-amstex
-Version:	2.2
-Release:	14
+Version:	63708
+Release:	1
 Summary:	American Mathematical Society plain TeX macros
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/amstex
 License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.doc.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.r63708.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.doc.r63708.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -31,12 +25,12 @@ authors. More recently, the focus of attention has switched to
 amslatex, but AMSTeX remains as a working system.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
@@ -52,16 +46,17 @@ amslatex, but AMSTeX remains as a working system.
 %doc %{_texmfdistdir}/doc/amstex/base/amsguide.tex
 %doc %{_texmfdistdir}/doc/amstex/base/amsppt.doc
 %doc %{_texmfdistdir}/doc/amstex/base/amsppt.faq
-%doc %{_texmfdistdir}/doc/amstex/base/amstinst.ps.gz
+%doc %{_texmfdistdir}/doc/amstex/base/amsppt.txt
+%doc %{_texmfdistdir}/doc/amstex/base/amstex.txt
 %doc %{_texmfdistdir}/doc/amstex/base/amstinst.tex
-%doc %{_texmfdistdir}/doc/amstex/base/joyerr.tex
+%doc %{_texmfdistdir}/doc/amstex/base/amstinst.pdf
 %doc %{_texmfdistdir}/doc/amstex/base/joyerr2.tex
 %doc %{_mandir}/man1/amstex.1*
 %doc %{_texmfdistdir}/doc/man/man1/amstex.man1.pdf
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1
+%autosetup -p1 -c -a1
 
 %build
 
