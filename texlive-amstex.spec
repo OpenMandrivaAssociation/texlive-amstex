@@ -1,6 +1,6 @@
 Name:		texlive-amstex
-Version:	63708
-Release:	2
+Version:	66186
+Release:	1
 Summary:	American Mathematical Society plain TeX macros
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/amstex
