@@ -1,5 +1,5 @@
 Name:		texlive-amstex
-Version:	66186
+Version:	67930
 Release:	1
 Summary:	American Mathematical Society plain TeX macros
 Group:		Publishing
