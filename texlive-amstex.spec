@@ -3,7 +3,7 @@ Version:	70015
 Release:	1
 Summary:	American Mathematical Society plain TeX macros
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/amstex
+URL:		https://www.ctan.org/tex-archive/macros/amstex
 License:	LPPL
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.doc.r%{version}.tar.xz
