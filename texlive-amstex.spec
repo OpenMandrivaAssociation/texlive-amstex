@@ -1,73 +1,45 @@
-Name:		texlive-amstex
-Version:	73848
-Release:	1
+%global tl_name amstex
+%global tl_revision 77830
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	2.01
+Release:	%{tl_revision}.1
 Summary:	American Mathematical Society plain TeX macros
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/amstex
-License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.doc.r%{version}.tar.xz
+License:	lppl
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/amstex.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
-Requires(post):	texlive-tetex
-Requires:	texlive-tex
-Requires:	texlive-amstex.bin
+%texlive_base_requires
+Requires:	texlive(amsfonts)
+Requires:	texlive(amstex.bin)
+Requires:	texlive(cm)
+Requires:	texlive(hyphen-base)
+Requires:	texlive(knuth-lib)
+Requires:	texlive(pdftex)
+Requires:	texlive(plain)
+Requires:	texlive(tex)
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-AMSTeX is a TeX macro package, originally written by Michael
-Spivak for the American Mathematical Society (AMS) during 1983-
-1985 and is described in the book 'The Joy of TeX'. It is based
-on Plain TeX, and provides many features for producing more
-professional-looking maths formulas with less burden on
-authors. More recently, the focus of attention has switched to
-amslatex, but AMSTeX remains as a working system.
+AMS-TeX is a TeX macro package, originally written by Michael Spivak for
+the American Mathematical Society (AMS) during 1983-1985 and is
+described in the book 'The Joy of TeX'. It is based on Plain TeX, and
+provides many features for producing more professional-looking maths
+formulas with less burden on authors. This is the final archival
+distribution of AMS-TeX. AMS-TeX is no longer supported by the AMS, nor
+is it used by the AMS publishing program. The AMS does not recommend
+creating any new documents using AMS-TeX; this distribution will be left
+on CTAN to facilitate processing of legacy documents and as a historical
+record of a pioneering TeX macro collection that played a key role in
+popularizing TeX and revolutionizing mathematics publishing. In addition
+to the "User's Guide to AMS-TeX", the AMS has also made the full text of
+the most recent reprint of the second edition of "The Joy of TeX" by
+Michael Spivak available as a pdf file. AMS-TeX is the historical basis
+of amslatex, which should now be used to prepare submissions for the
+AMS.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/amstex/base/amsppt.sti
-%{_texmfdistdir}/tex/amstex/base/amsppt.sty
-%{_texmfdistdir}/tex/amstex/base/amsppt1.tex
-%{_texmfdistdir}/tex/amstex/base/amstex.bug
-%{_texmfdistdir}/tex/amstex/base/amstex.tex
-%{_texmfdistdir}/tex/amstex/config/amstex.ini
-%_texmf_fmtutil_d/amstex
-%doc %{_texmfdistdir}/doc/amstex/base/README
-%doc %{_texmfdistdir}/doc/amstex/base/amsguide.pdf
-%doc %{_texmfdistdir}/doc/amstex/base/amsguide.tex
-%doc %{_texmfdistdir}/doc/amstex/base/amsppt.doc
-%doc %{_texmfdistdir}/doc/amstex/base/amsppt.faq
-%doc %{_texmfdistdir}/doc/amstex/base/amsppt.txt
-%doc %{_texmfdistdir}/doc/amstex/base/amstex.txt
-%doc %{_texmfdistdir}/doc/amstex/base/amstinst.tex
-%doc %{_texmfdistdir}/doc/amstex/base/amstinst.pdf
-%doc %{_texmfdistdir}/doc/amstex/base/joyerr2.tex
-%doc %{_mandir}/man1/amstex.1*
-%doc %{_texmfdistdir}/doc/man/man1/amstex.man1.pdf
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_datadir}
-cp -fpar texmf-dist %{buildroot}%{_datadir}
-mkdir -p %{buildroot}%{_mandir}/man1
-mv %{buildroot}%{_texmfdistdir}/doc/man/man1/*.1 %{buildroot}%{_mandir}/man1
-mkdir -p %{buildroot}%{_texmf_fmtutil_d}
-cat > %{buildroot}%{_texmf_fmtutil_d}/amstex <<EOF
-#
-# from amstex:
-amstex pdftex - -translate-file=cp227.tcx *amstex.ini
-EOF
