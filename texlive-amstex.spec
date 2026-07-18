@@ -1,5 +1,6 @@
 %global tl_name amstex
 %global tl_revision 77830
+%global tl_bin_links amstex:pdftex
 
 Name:		texlive-%{tl_name}
 Epoch:		1
@@ -22,6 +23,8 @@ Requires:	texlive(pdftex)
 Requires:	texlive(plain)
 Requires:	texlive(tex)
 Provides:	texlive(%{tl_name}) = %{tl_revision}
+Provides:	texlive(%{tl_name}.bin) = %{tl_revision}
+Provides:	texlive-%{tl_name}.bin = %{EVRD}
 
 %description
 AMS-TeX is a TeX macro package, originally written by Michael Spivak for
